@@ -11,5 +11,17 @@ config_version=5
 [application]
 
 config/name="Starter"
+run/main_scene="uid://diq4y2hosd833"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Debug="*res://src/global/debug.gd"
+Vars="*res://src/global/vars.gd"
+
+[file_customization]
+
+folder_colors={
+"res://src/": "green"
+}
