@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvdw4xmvjhksk"]
+
+[ext_resource type="Script" uid="uid://cixhs4twm2t8p" path="res://src/main/menus/main_menu.gd" id="1_dmwil"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dmwil")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 400.0
+offset_right = 153.0
+offset_bottom = 567.0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "START"
+alignment = 0
+
+[node name="SoundTestButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "SOUND TEST"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+alignment = 0
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SoundTestButton" to="." method="_on_sound_test_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
