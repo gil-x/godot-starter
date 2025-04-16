@@ -2,9 +2,10 @@
 
 ## Features
 
-- nice debug script (src/global/debug.gd)
-- global vars script (src/global/vars.gd)
-- title screen with main menu
+- Debug/Log Script (src/global/debug.gd)
+- Global Vars script (src/global/vars.gd)
+- Title Screen with Main Menu
+- Global AudioPlayer Scene
 
 ## How to use & conception details
 
@@ -23,3 +24,30 @@ Debug.log(["Message", some_var, value])
 
 - customize what appends when player use directions on each entry in **focus** section
 - **get_tree().quit()** exits game
+
+### Audio
+
+Each sound is played by an AudioStreamPlayer created on the fly, deleted when sound is finished.
+Two custom sound busses will be used for SFX and Music.
+
+#### Bus Layout
+
+- Create resource **AudioBusLayout**, name it _default_bus_layout_
+- In this resource, create to new busses: _Music_ and _SFX_
+
+#### How to use
+
+- AudioPlayer Scene must be set in Project Settings > Globals
+- If you play a sound loop or want to stop manually a sound, you need to assign the returned asp in a var.
+
+```gdscript
+    # Simple case of a short sound, asp will self delete at end
+    AudioPlayer.play_sound("sfx_random")
+    # Keep sound in a var if you need to stop it manually
+	var music = AudioPlayer.fade_in("music_random", 5.0, -10.0)
+    var music = AudioPlayer.play_sound("music_random", -10.0, true)
+    # For many sounds, you can use groups
+    music.add_to_group("musics")
+    for music in musics:
+		AudioPlayer.stop(music)
+```

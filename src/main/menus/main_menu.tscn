@@ -44,6 +44,8 @@ theme_override_font_sizes/font_size = 32
 text = "QUIT"
 alignment = 0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SoundTestButton" to="." method="_on_sound_test_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

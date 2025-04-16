@@ -15,13 +15,19 @@ run/main_scene="uid://diq4y2hosd833"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://src/global/default_bus_layout.tres"
+
 [autoload]
 
 Debug="*res://src/global/debug.gd"
 Vars="*res://src/global/vars.gd"
+AudioPlayer="*res://src/global/audio_player.tscn"
 
 [file_customization]
 
 folder_colors={
+"res://assets/": "pink",
 "res://src/": "green"
 }
