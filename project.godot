@@ -24,6 +24,7 @@ buses/default_bus_layout="res://src/global/default_bus_layout.tres"
 Debug="*res://src/global/debug.gd"
 Vars="*res://src/global/vars.gd"
 AudioPlayer="*res://src/global/audio_player.tscn"
+Game="*res://src/global/game.gd"
 
 [file_customization]
 

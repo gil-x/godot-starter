@@ -1,0 +1,150 @@
+[gd_scene load_steps=2 format=3 uid="uid://wca23tbolsq3"]
+
+[ext_resource type="Script" uid="uid://bw5q12pe28b37" path="res://sound_test.gd" id="1_jwtsr"]
+
+[node name="SoundTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwtsr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 200.0
+offset_right = 938.0
+offset_bottom = 260.0
+
+[node name="ButtonDo" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "DO"
+
+[node name="ButtonRe" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "RE"
+
+[node name="ButtonMi" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "MI"
+
+[node name="ButtonFa" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "FA"
+
+[node name="ButtonSol" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "SOL"
+
+[node name="ButtonLa" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "LA"
+
+[node name="ButtonSi" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "SI"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 268.0
+offset_right = 890.0
+offset_bottom = 328.0
+metadata/_edit_group_ = true
+
+[node name="PlayOnce" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Play One Time"
+
+[node name="PlayLoop" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Play Loop"
+
+[node name="PausePlay" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "PausePlay"
+
+[node name="Stop" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Stop
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 363.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+max_value = 1.5
+step = 0.05
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+max_value = 1.5
+step = 0.05
+value = 1.0
+
+[connection signal="pressed" from="HBoxContainer/ButtonDo" to="." method="_on_button_do_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonRe" to="." method="_on_button_re_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonMi" to="." method="_on_button_mi_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonFa" to="." method="_on_button_fa_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonSol" to="." method="_on_button_sol_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonLa" to="." method="_on_button_la_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonSi" to="." method="_on_button_si_pressed"]
+[connection signal="pressed" from="HBoxContainer2/PlayOnce" to="." method="_on_play_once_pressed"]
+[connection signal="pressed" from="HBoxContainer2/PlayLoop" to="." method="_on_play_loop_pressed"]
+[connection signal="pressed" from="HBoxContainer2/PausePlay" to="." method="_on_pause_play_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Stop" to="." method="_on_stop_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/GridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

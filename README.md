@@ -28,17 +28,17 @@ Debug.log(["Message", some_var, value])
 ### Audio
 
 Each sound is played by an AudioStreamPlayer created on the fly, deleted when sound is finished.
-Two custom sound busses will be used for SFX and Music.
+Two custom sound busses will be used for **SFX** and **Music**.
 
 #### Bus Layout
 
 - Create resource **AudioBusLayout**, name it _default_bus_layout_
-- In this resource, create to new busses: _Music_ and _SFX_
+- In this resource, create to new busses: **Music** and **SFX**
 
 #### How to use
 
 - AudioPlayer Scene must be set in Project Settings > Globals
-- If you play a sound loop or want to stop manually a sound, you need to assign the returned asp in a var.
+- If you play a _sound loop_ or want to stop manually a sound, you need to assign the _returned asp_ in a var.
 
 ```gdscript
     # Simple case of a short sound, asp will self delete at end
@@ -51,3 +51,8 @@ Two custom sound busses will be used for SFX and Music.
     for music in musics:
 		AudioPlayer.stop(music)
 ```
+
+### Audio volume
+
+- need a global **game.gd** script
+- two sliders with _value_changed event_ change volume of SFX or MUSIC
