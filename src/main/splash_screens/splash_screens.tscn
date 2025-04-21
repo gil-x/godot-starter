@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cggnpr84aqipg"]
+
+[ext_resource type="Script" uid="uid://mwc2gpwjsjtu" path="res://src/main/splash_screens/splash_screens.gd" id="1_2mg4f"]
+[ext_resource type="PackedScene" uid="uid://6mxo3br5vg00" path="res://src/main/splash_screens/splash_screen.tscn" id="2_mgraw"]
+[ext_resource type="Texture2D" uid="uid://cptsbx7sqbwhk" path="res://icon.svg" id="3_gk3dd"]
+
+[node name="SplashScreens" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2mg4f")
+wait_before_start = 3.0
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Screens" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="SplashScreen1" parent="Screens" instance=ExtResource("2_mgraw")]
+sound = "sfx_do"
+
+[node name="Sprite2D" type="Sprite2D" parent="Screens/SplashScreen1/MediaContainer" index="0"]
+texture = ExtResource("3_gk3dd")
+
+[node name="SplashScreen2" parent="Screens" instance=ExtResource("2_mgraw")]
+sound = "sfx_re"
+
+[node name="Sprite2D" type="Sprite2D" parent="Screens/SplashScreen2/MediaContainer" index="0"]
+texture = ExtResource("3_gk3dd")
+
+[node name="SplashScreen3" parent="Screens" instance=ExtResource("2_mgraw")]
+sound = "sfx_mi"
+
+[node name="Sprite2D" type="Sprite2D" parent="Screens/SplashScreen3/MediaContainer" index="0"]
+texture = ExtResource("3_gk3dd")
+
+[editable path="Screens/SplashScreen1"]
+[editable path="Screens/SplashScreen2"]
+[editable path="Screens/SplashScreen3"]

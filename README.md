@@ -56,3 +56,10 @@ Two custom sound busses will be used for **SFX** and **Music**.
 
 - need a global **game.gd** script
 - two sliders with _value_changed event_ change volume of SFX or MUSIC
+
+## Splash Screens
+
+- In **SplashScreens** scene reate **SplashScreen** instances under node Screens
+- Set _'Editable children'_ (right click menu in node tree) on each of these **SplashScreen** nodes
+- In each **SplashScreen**, under MediaContainer, add a **Sprite2d**, **VideoStreamPlayer** or whatever visual, and the name of sound (wich need to be registered in audio_player.gd)
+- Each **SplashScreen** can be bypass with a click or press on _"ui_cancel"_, you can add more events if needed.

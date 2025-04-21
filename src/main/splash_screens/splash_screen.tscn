@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://6mxo3br5vg00"]
+
+[ext_resource type="Script" uid="uid://dm6kgfo7uj1vw" path="res://src/main/splash_screens/splash_screen.gd" id="1_sbldy"]
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sbldy")
+display_time = 3.0
+
+[node name="MediaContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Zap" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Zap" to="." method="_on_zap_pressed"]
