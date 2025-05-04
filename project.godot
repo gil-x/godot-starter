@@ -25,6 +25,7 @@ Debug="*res://src/global/debug.gd"
 Vars="*res://src/global/vars.gd"
 AudioPlayer="*res://src/global/audio_player.tscn"
 Game="*res://src/global/game.gd"
+Pause="*res://src/global/pause.tscn"
 
 [file_customization]
 

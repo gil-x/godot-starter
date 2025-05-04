@@ -1,6 +1,11 @@
 extends Control
 
-	
+
+func _ready() -> void:
+	Debug.log("lets slow it")
+	Engine.time_scale = 0.1
+
+
 func _on_button_do_pressed() -> void:
 	AudioPlayer.play_sound("sfx_do")
 

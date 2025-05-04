@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dra0rnh5r8aso"]
+
+[ext_resource type="Script" uid="uid://ccqpypobjr3xv" path="res://src/global/pause.gd" id="1_leibe"]
+[ext_resource type="PackedScene" uid="uid://wca23tbolsq3" path="res://src/soundtest/sound_test.tscn" id="2_kxobt"]
+
+[node name="Pause" type="CanvasLayer"]
+script = ExtResource("1_leibe")
+
+[node name="Content" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.27451)
+
+[node name="PauseLabel" type="Label" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -488.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundTest" parent="Content" instance=ExtResource("2_kxobt")]
+layout_mode = 1

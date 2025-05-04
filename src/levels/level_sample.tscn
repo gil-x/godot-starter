@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq5idjn6h72rb"]
+
+[ext_resource type="Script" uid="uid://f6hpfrgpr1p5" path="res://src/levels/level_sample.gd" id="1_bldi7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f4jem"]
+radius = 24.0
+
+[node name="LevelSample" type="Node"]
+script = ExtResource("1_bldi7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(192, 64, 192, 128, 384, 144, 384, 208, 576, 224, 576, 288, 768, 304, 768, 320, 960, 336, 1024, 64, 1152, 48, 1152, 648, 0, 648, 0, 48)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0.466181, 0.466181, 0.466181, 1)
+polygon = PackedVector2Array(0, 48, 192, 64, 192, 128, 384, 144, 384, 208, 576, 224, 576, 288, 768.423, 301.744, 768, 320, 960, 336, 1024, 64, 1152, 48, 1152, 648, 0, 648)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(40, 24)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_f4jem")
+
+[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-16, -16, 0, -24, 16, -16, 24, 0, 16, 16, 0, 24, -16, 16, -24, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(928, 352, 944, 296, 984, 296, 968, 352)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

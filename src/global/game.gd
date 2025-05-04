@@ -15,9 +15,7 @@ func change_state(state: int):
 			current_state = State.TITLE_SCREEN
 		State.IN_GAME:
 			current_state = State.IN_GAME
-			Engine.time_scale = 1
 		State.PAUSED:
 			current_state = State.PAUSED
-			Engine.time_scale = 0.01
 		State.GAME_OVER:
 			current_state = State.GAME_OVER
