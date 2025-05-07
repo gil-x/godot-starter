@@ -6,6 +6,7 @@
 - Global Vars script (src/global/vars.gd)
 - Title Screen with Main Menu
 - Global AudioPlayer Scene
+- Pause system
 
 ## How to use & conception details
 
@@ -52,6 +53,14 @@ Two custom sound busses will be used for **SFX** and **Music**.
 		AudioPlayer.stop(music)
 ```
 
+- You shall use Audioplayer.pause_all() when pausing game
+- You shall use Audioplayer.kill_all() when leaving a scene
+- If you want to slow down or speed up a sound, use:
+
+```gdscript
+asp.pitch_scale = 0.5
+```
+
 ### Audio volume
 
 - need a global **game.gd** script
@@ -63,3 +72,27 @@ Two custom sound busses will be used for **SFX** and **Music**.
 - Set _'Editable children'_ (right click menu in node tree) on each of these **SplashScreen** nodes
 - In each **SplashScreen**, under MediaContainer, add a **Sprite2d**, **VideoStreamPlayer** or whatever visual, and the name of sound (wich need to be registered in audio_player.gd)
 - Each **SplashScreen** can be bypass with a click or press on _"ui_cancel"_, you can add more events if needed.
+
+## Pause
+
+- Use basic pause system of Godot
+- Pause node is global, and as Process > Mode set to **Always**, it make ignore the get_tree().paused = true
+- You can use slow motion effect before pausing with this kind of system:
+
+```gdscript
+func _tween_finished():
+	if Engine.time_scale < 0.2:
+		Game.current_state = Game.State.PAUSED
+		get_tree().paused = true
+	else:
+		Game.current_state = Game.State.IN_GAME
+		get_tree().paused = false
+
+func _pause() -> void:
+    var tween : Tween
+        tween = create_tween().set_parallel(true)
+        tween.tween_property(Engine, "time_scale", 0.05, 0.5)
+        tween.finished.connect(_tween_finished)
+        # or await tween.finished
+        # do pause here
+```

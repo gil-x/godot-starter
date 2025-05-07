@@ -11,7 +11,6 @@ var splash_screens = []
 
 func _ready():
 	for child in screens.get_children():
-		Debug.log(["Cloning", child])
 		var clone = child.duplicate()
 		splash_screens.append(clone)
 		child.queue_free()
@@ -22,7 +21,6 @@ func _ready():
 func _display_screen():
 	await get_tree().create_timer(wait_between_screens).timeout
 	var screen = splash_screens.pop_front()
-	Debug.log(["Displaying", screen])
 	screen.splash_screen_ended.connect(self._on_splash_screen_ended)
 	screens.call_deferred("add_child", screen)
 	screen.call_deferred("run")

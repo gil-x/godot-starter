@@ -1,8 +1,6 @@
 extends Node
 
 var tween : Tween
-
-
 # Naming convention sfx_ / music_ is mandatory!
 var sounds = {
 	"sfx_do": preload("res://assets/samples/sfx/notes/do.ogg"),
@@ -83,3 +81,13 @@ func pause(asp: AudioStreamPlayer):
 
 func stop(asp: AudioStreamPlayer):
 	asp.queue_free()
+	
+
+func pause_all():
+	for asp in self.get_children():
+		pause(asp)
+
+
+func kill_all():
+	for asp in self.get_children():
+		asp.queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq5idjn6h72rb"]
+[gd_scene load_steps=4 format=3 uid="uid://dq5idjn6h72rb"]
 
 [ext_resource type="Script" uid="uid://f6hpfrgpr1p5" path="res://src/levels/level_sample.gd" id="1_bldi7"]
+[ext_resource type="PackedScene" uid="uid://d4bs8wmftd45n" path="res://src/levels/digits.tscn" id="2_r131s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f4jem"]
 radius = 24.0
@@ -30,6 +31,8 @@ polygon = PackedVector2Array(-16, -16, 0, -24, 16, -16, 24, 0, 16, 16, 0, 24, -1
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(928, 352, 944, 296, 984, 296, 968, 352)
+polygon = PackedVector2Array(760, 328, 760, 304, 984, 312, 968, 344)
+
+[node name="Digits" parent="." instance=ExtResource("2_r131s")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

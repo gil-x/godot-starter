@@ -6,6 +6,11 @@ extends Node
 enum State {SPLASH_SCREENS, TITLE_SCREEN, IN_GAME, PAUSED, GAME_OVER}
 var current_state : int
 
+#var save_path := "user://starter.save"
+#var save_file = FileAccess.open("user://starter.save", FileAccess.WRITE) 
+#func existing_file_save(path: String) -> bool:
+	#return FileAccess.file_exists(path)
+	
 
 func change_state(state: int):
 	match state:

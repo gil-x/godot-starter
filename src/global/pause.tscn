@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wca23tbolsq3" path="res://src/soundtest/sound_test.tscn" id="2_kxobt"]
 
 [node name="Pause" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_leibe")
 
 [node name="Content" type="Control" parent="."]
@@ -39,3 +40,13 @@ vertical_alignment = 1
 
 [node name="SoundTest" parent="Content" instance=ExtResource("2_kxobt")]
 layout_mode = 1
+
+[node name="BackToMainMenu" type="Button" parent="Content"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 613.0
+offset_right = 211.0
+offset_bottom = 644.0
+text = "<< BACK TO SCREEN TITLE"
+
+[connection signal="pressed" from="Content/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]

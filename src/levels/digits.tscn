@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4bs8wmftd45n"]
+
+[ext_resource type="Script" uid="uid://cp7y7c2nc2qem" path="res://src/levels/digits.gd" id="1_npdch"]
+[ext_resource type="PackedScene" uid="uid://ccci30e1kkk8x" path="res://src/levels/digit.tscn" id="2_enrp7"]
+
+[node name="Digits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_npdch")
+
+[node name="DigitsContainers" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Digit1" parent="DigitsContainers" instance=ExtResource("2_enrp7")]
+layout_mode = 0
+
+[node name="Digit2" parent="DigitsContainers" instance=ExtResource("2_enrp7")]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 184.0
+
+[node name="Digit3" parent="DigitsContainers" instance=ExtResource("2_enrp7")]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 280.0
+
+[node name="ButtonSave" type="Button" parent="."]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 136.0
+offset_bottom = 144.0
+text = "SAVE"
+
+[node name="ButtonLoad" type="Button" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 104.0
+offset_right = 280.0
+offset_bottom = 144.0
+text = "LOAD"
+
+[connection signal="pressed" from="ButtonSave" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="ButtonLoad" to="." method="_on_button_load_pressed"]
