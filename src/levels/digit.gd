@@ -1,4 +1,5 @@
 extends Panel
+class_name Digit
 
 @onready var label_digit: Label = %LabelDigit
 
@@ -6,6 +7,7 @@ extends Panel
 var digit : int = 0 :
 	set(value):
 		digit = clamp(value, 0, 9)
+		_refresh_digit_label()
 
 
 func _refresh_digit_label():
@@ -15,18 +17,7 @@ func _refresh_digit_label():
 
 func _on_plus_pressed() -> void:
 	digit += 1
-	_refresh_digit_label()
-	Debug.log(digit)
 
 
 func _on_minus_pressed() -> void:
 	digit -= 1
-	_refresh_digit_label()
-
-
-#func save():
-	#Game.save_file.store_var(label_digit)
-	#
-#
-#func load():
-	#label_digit = Game.save_file.get_var(true)

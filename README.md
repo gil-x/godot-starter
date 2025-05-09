@@ -1,18 +1,27 @@
 # Godot - Project Starter
 
+Godot 4.4 starter project.
+
 ## Features
 
 - Debug/Log Script (src/global/debug.gd)
-- Global Vars script (src/global/vars.gd)
+- Global Vars Script (src/global/vars.gd)
 - Title Screen with Main Menu
 - Global AudioPlayer Scene
+- Audio Volume Set Scene
 - Pause system
+- Basic Save System
 
 ## How to use & conception details
 
-### Debug script
+### 1. Debug script
 
-Use cases:
+#### 1.1 Global
+
+Scenes or Script can be made _globals_ and be accessed from any node.
+To create one, go in Projects Settings > Globals.
+
+#### 1.2 Use cases:
 
 ```gdscript
 # Logs one value
@@ -21,24 +30,25 @@ Debug.log("Some message")
 Debug.log(["Message", some_var, value])
 ```
 
-### Main Menu Recipe
+### 2. Main Menu Recipe
 
-- customize what appends when player use directions on each entry in **focus** section
+- Customize what appends when User use directions on each entry in **focus** section
 - **get_tree().quit()** exits game
 
-### Audio
+### 2. Audio Script
 
-Each sound is played by an AudioStreamPlayer created on the fly, deleted when sound is finished.
-Two custom sound busses will be used for **SFX** and **Music**.
+Is good practice to play sound in a dedicated scene: audio*player.tscn is \_global* scene.
+Each sound is played by an **AudioStreamPlayer** created on the fly, deleted when sound is finished.
+Two custom sound _busses_ will be used for **SFX** and **Music**.
 
-#### Bus Layout
+#### 2.1 Bus Layout Recipe
 
 - Create resource **AudioBusLayout**, name it _default_bus_layout_
-- In this resource, create to new busses: **Music** and **SFX**
+- In this resource, create to new _busses_: **Music** and **SFX**
 
-#### How to use
+#### 2.2 How to use
 
-- AudioPlayer Scene must be set in Project Settings > Globals
+- _AudioPlayer Scene_ must be set in Project Settings > Globals
 - If you play a _sound loop_ or want to stop manually a sound, you need to assign the _returned asp_ in a var.
 
 ```gdscript
@@ -61,23 +71,23 @@ Two custom sound busses will be used for **SFX** and **Music**.
 asp.pitch_scale = 0.5
 ```
 
-### Audio volume
+### 3. Audio volume
 
-- need a global **game.gd** script
-- two sliders with _value_changed event_ change volume of SFX or MUSIC
+- Need a global **game.gd** script
+- Two sliders with _value_changed event_ change volume of SFX or MUSIC
 
-## Splash Screens
+### 4. Splash Screens
 
 - In **SplashScreens** scene reate **SplashScreen** instances under node Screens
 - Set _'Editable children'_ (right click menu in node tree) on each of these **SplashScreen** nodes
 - In each **SplashScreen**, under MediaContainer, add a **Sprite2d**, **VideoStreamPlayer** or whatever visual, and the name of sound (wich need to be registered in audio_player.gd)
 - Each **SplashScreen** can be bypass with a click or press on _"ui_cancel"_, you can add more events if needed.
 
-## Pause
+### 5. Pause Game
 
-- Use basic pause system of Godot
-- Pause node is global, and as Process > Mode set to **Always**, it make ignore the get_tree().paused = true
-- You can use slow motion effect before pausing with this kind of system:
+- Uses native pause system of Godot
+- Pause node is _global_, and as Process > Mode is set to **Always**, it make ignore the get_tree().paused = true
+- Tip: you can use slow motion effect before pausing with this method:
 
 ```gdscript
 func _tween_finished():
@@ -96,3 +106,21 @@ func _pause() -> void:
         # or await tween.finished
         # do pause here
 ```
+
+### 6. Save System
+
+Basic save and load functions are located in global **game.gd**.
+Saves data in json format:
+
+```json
+{
+  "key1": ["A first string", 1, 1.5, true],
+  "key2": ["Another string", 9, 0.1, false]
+}
+```
+
+- Set a custom file save name (var **save_path**)
+- Use save_data and load_data to save an **Array** of values of types String, int, float or bool
+- You have to ensure data validity on each use case
+
+For more complex save system, look at [GD Script Documentation](https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html).
