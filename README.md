@@ -1,93 +1,115 @@
-# Godot - Project Starter
+<p align="center">
+  <img src="https://img.shields.io/badge/Godot-4.4-blue?logo=godot-engine&logoColor=white" alt="Godot 4.4" />
+  <img src="https://img.shields.io/badge/Status-Ready-green?style=flat-square" alt="Status: Ready" />
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square" alt="License: MIT" />
+  <img src="https://img.shields.io/badge/Made%20with-%F0%9F%A7%91%E2%80%8D%F0%9F%92%BB%20+%20%E2%9A%94%EF%B8%8F%20+%20%F0%9F%8E%AE-blue" alt="Made with dev love" />
+</p>
 
-Godot 4.4 starter project.
+# 🎮 Godot - Project Starter
 
-## Features
+🚀 A lightweight, modular starter kit for building your next **Godot 4.4** game — with menus, audio, splash screens, debug logs, save system & more!
 
-- Debug/Log Script (src/global/debug.gd)
-- Global Vars Script (src/global/vars.gd)
-- Title Screen with Main Menu
-- Global AudioPlayer Scene
-- Audio Volume Set Scene
-- Pause system
-- Basic Save System
+## 🧩 Features
 
-## How to use & conception details
+- 🐛 Debug / Logging system (`src/global/debug.gd`)
+- 🌐 Global Variables script (`src/global/vars.gd`)
+- 🎬 Title Screen with Main Menu
+- 🔊 Global AudioPlayer Scene
+- 🎚️ Audio Volume Settings Scene
+- ⏸️ Pause System
+- 💾 Basic Save System (JSON format)
 
-### 1. Debug script
+## 🛠️ How to Use & Project Design Details
 
-#### 1.1 Global
+### 🐞 1. Debug script
 
-Scenes or Script can be made _globals_ and be accessed from any node.
-To create one, go in Projects Settings > Globals.
+#### 🌍 1.1 Global Scripts
 
-#### 1.2 Use cases:
+Scenes or scripts can be made **global** and accessed from any node.  
+➡️ To create one, go to **Projects Settings > Globals**.
+
+#### 🧪 1.2 Example Usage
 
 ```gdscript
-# Logs one value
-Debug.log("Some message")
-# Use an Array to log many values
-Debug.log(["Message", some_var, value])
+  # Logs one value
+  Debug.log("Some message")
+  # Use an Array to log many values
+  Debug.log(["Message", some_var, value])
 ```
 
-### 2. Main Menu Recipe
+### 🎮 2. Main Menu Setup
 
-- Customize what appends when User use directions on each entry in **focus** section
-- **get_tree().quit()** exits game
+- Customize behavior when users navigate with direction keys via the **focus** section
+- Exit the game with: **get_tree().quit()**
 
-### 2. Audio Script
+### 🔊 3. Audio System
 
-Is good practice to play sound in a dedicated scene: audio*player.tscn is \_global* scene.
-Each sound is played by an **AudioStreamPlayer** created on the fly, deleted when sound is finished.
-Two custom sound _busses_ will be used for **SFX** and **Music**.
+- Playing sounds via a dedicated scene (`AudioPlayer.tscn`) is good practice
+- `AudioPlayer.tscn` is _global scene_
+- Is good practice to play sound in a dedicated scene: audio*player.tscn is \_global* scene
+- Each sound is played by a dynamic **AudioStreamPlayer** created on the fly, deleted when sound is finished
+- Two custom audio _busses_ will be used for **SFX** and **Music**
 
-#### 2.1 Bus Layout Recipe
+#### 🎛️ 3.1 Audio Bus Layout Setup
 
 - Create resource **AudioBusLayout**, name it _default_bus_layout_
 - In this resource, create to new _busses_: **Music** and **SFX**
 
-#### 2.2 How to use
+#### 📦 3.2 How to use
 
-- _AudioPlayer Scene_ must be set in Project Settings > Globals
-- If you play a _sound loop_ or want to stop manually a sound, you need to assign the _returned asp_ in a var.
+- Make sure _AudioPlayer Scene_ is set as a **global** in `Project Settings > Autoload`
+- If you play a _sound loop_ or want to stop manually a sound, you need to assign the _returned asp_ in a var
 
 ```gdscript
-    # Simple case of a short sound, asp will self delete at end
-    AudioPlayer.play_sound("sfx_random")
-    # Keep sound in a var if you need to stop it manually
+  # Simple case of a short sound, asp will self delete at end
+  AudioPlayer.play_sound("sfx_random")
+
+  # Keep sound in a var if you need to stop it manually
 	var music = AudioPlayer.fade_in("music_random", 5.0, -10.0)
-    var music = AudioPlayer.play_sound("music_random", -10.0, true)
-    # For many sounds, you can use groups
-    music.add_to_group("musics")
-    for music in musics:
+  var music = AudioPlayer.play_sound("music_random", -10.0, true)
+
+  # For many sounds, you can use groups
+  music.add_to_group("musics")
+  for music in musics:
 		AudioPlayer.stop(music)
 ```
 
-- You shall use Audioplayer.pause_all() when pausing game
-- You shall use Audioplayer.kill_all() when leaving a scene
-- If you want to slow down or speed up a sound, use:
+#### 🔁 3.3 Pause & stop
 
 ```gdscript
-asp.pitch_scale = 0.5
+  # Pause all sounds (you shall use this when pausing game)
+  AudioPlayer.pause_all()
+
+  # Kill all sounds (you shall use this when changing scene)
+  AudioPlayer.kill_all()
 ```
 
-### 3. Audio volume
+🌀 3.4 Change pitch (slow/fast playback):
 
-- Need a global **game.gd** script
-- Two sliders with _value_changed event_ change volume of SFX or MUSIC
+```gdscript
+  asp.pitch_scale = 0.5
+```
 
-### 4. Splash Screens
+### 🎚️ 4. Audio Volume Controls
 
-- In **SplashScreens** scene reate **SplashScreen** instances under node Screens
-- Set _'Editable children'_ (right click menu in node tree) on each of these **SplashScreen** nodes
-- In each **SplashScreen**, under MediaContainer, add a **Sprite2d**, **VideoStreamPlayer** or whatever visual, and the name of sound (wich need to be registered in audio_player.gd)
-- Each **SplashScreen** can be bypass with a click or press on _"ui_cancel"_, you can add more events if needed.
+- Requires a global **game.gd** script
+- Two sliders with _value_changed_ signals to change volume of **SFX** or **MUSIC** _busses_
 
-### 5. Pause Game
+### 🎬 5. Splash Screens
 
-- Uses native pause system of Godot
-- Pause node is _global_, and as Process > Mode is set to **Always**, it make ignore the get_tree().paused = true
-- Tip: you can use slow motion effect before pausing with this method:
+- Use the **SplashScreens** scene and add **SplashScreen** instances under the _Screens_ node
+- Right-click each splash node & enable **Editable Children**
+- Inside each **SplashScreen**, under _MediaContainer_, add a **Sprite2d**, **VideoStreamPlayer**, etc.
+- Assign a sound name (must be registered in _audio_player.gd_)
+
+⏩ Each **SplashScreen** can be skipped via a click or press of _"ui_cancel"_, you can add more skip events if needed.
+
+### ⏸️ 6. Pause Game
+
+- Uses Godot's built-in pause system
+- Pause node is _global_, with `Process > Mode` set to **Always**, this makes bypasse the `get_tree().paused = true`
+
+💡 Slow-motion effect before pause:
 
 ```gdscript
 func _tween_finished():
@@ -99,18 +121,18 @@ func _tween_finished():
 		get_tree().paused = false
 
 func _pause() -> void:
-    var tween : Tween
-        tween = create_tween().set_parallel(true)
-        tween.tween_property(Engine, "time_scale", 0.05, 0.5)
-        tween.finished.connect(_tween_finished)
-        # or await tween.finished
-        # do pause here
+  var tween : Tween
+    tween = create_tween().set_parallel(true)
+    tween.tween_property(Engine, "time_scale", 0.05, 0.5)
+    tween.finished.connect(_tween_finished)
+    # or await tween.finished
+    # do pause here
 ```
 
-### 6. Save System
+### 💾 7. Save System
 
-Basic save and load functions are located in global **game.gd**.
-Saves data in json format:
+Basic save and load functions are located in global **game.gd**.  
+Saves data in _json_ format:
 
 ```json
 {
@@ -119,8 +141,10 @@ Saves data in json format:
 }
 ```
 
-- Set a custom file save name (var **save_path**)
-- Use save_data and load_data to save an **Array** of values of types String, int, float or bool
+📝 Usage:
+
+- Define a custom file path via var **save_path**
+- Use **save_data** and **load_data** functions to store **Array** of values of types _String_, _int_, _float_ or _bool_
 - You have to ensure data validity on each use case
 
-For more complex save system, look at [GD Script Documentation](https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html).
+📚 For advanced save systems, check [Godot Docs – Saving Games](https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html).
